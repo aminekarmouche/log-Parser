@@ -21,6 +21,21 @@ class DefaultController extends Controller
         ));
     }
 
+        /**
+     * @Route("/parse", name="parse")
+     */
+    public function indexParse(Request $request)
+    {
+        return new Response('Parsing the log file and storing Entry objects in DB!');
+    }
+
+    /**
+     * @Route("/logparse", name="logparse")
+     */
+    public function indexLogParse(Request $request)
+    {
+        return new Response('Parsing and putting directly in MYSQL!');
+    }
 
 
 }
