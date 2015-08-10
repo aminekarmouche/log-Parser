@@ -18,7 +18,7 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        foo();
+
 
         return new Response('success!');
     }

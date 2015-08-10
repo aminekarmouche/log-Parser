@@ -4,7 +4,7 @@ function foo() {
   echo 'bar';
 }
 
-public function load_in_file(){
+public function load_data_infile(){
         //get a connection
         $cnx = $this->getDoctrine()->getConnection();
 
