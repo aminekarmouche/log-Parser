@@ -17,7 +17,7 @@ Here's a brief guide!
 ### Basic approach consists of parsing and persisting the log file
 use of PHP's preg_match_all to match a regular expression
 ### Database Oriented approach
-Using a trasaction to load the log file directly to the database using MySql's   
+Using a trasaction to load the log file directly to the database using MySql's LOAD DATA INFILE data manipulation statement.
 
 
 ## Log Format
@@ -38,12 +38,9 @@ The presence of a "-" in a field indicates missing data.
 - 2326 is the size of the object returned to the client, measured in bytes.
 
 ### Enhacements and TODO
-- better manager parsing using services and dependeny injection (skinny models and controller)
-- perform data analysis on myqsl database
+- better manage parsing using services and dependeny injection (skinny models and controller)
+- perform data analysis on myqsl database 
 - conversion to CSV format for a more adequate use in statistical anlysis (PERL, Py, and R) 
 - enhance the speed of MySql's LOAD DATA through ignoring foreign keys and uniqueness constrains
 - enforce file splitting rules for large log files
 - other aspects to be discussed!
-
-
-
