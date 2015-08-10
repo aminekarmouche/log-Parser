@@ -6,7 +6,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-
+use AppBundle\Entity\Entry;
+use Acme\ToolBundle\Parser;
 
 class DefaultController extends Controller
 {
@@ -15,27 +16,40 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        // replace this example code with whatever you need
-        return $this->render('default/index.html.twig', array(
-            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
-        ));
+        $parser = new Parser();
+        $parser->hello();
+
+        return new Response('success!');
     }
 
-        /**
-     * @Route("/parse", name="parse")
-     */
-    public function indexParse(Request $request)
-    {
-        return new Response('Parsing the log file and storing Entry objects in DB!');
-    }
+    
 
     /**
      * @Route("/logparse", name="logparse")
      */
     public function indexLogParse(Request $request)
     {
-        return new Response('Parsing and putting directly in MYSQL!');
+        $entry = new Entry();
+        $entry->setClient('A Foo Bar');
+        $entry->setUserid('-');
+        $entry->setClientid('-');
+        $str = new \DateTime('12569537329');
+        $entry->setTimed($str);
+
+        $entry->setMethod('GET');
+        $entry->setRequest('Homepage');
+        $entry->setStatusCode('200');
+        $entry->setSize('5000');
+
+        $em = $this->getDoctrine()->getManager();
+
+        $em->persist($entry);
+        $em->flush();
+
+        return new Response('Created entry id '.$entry->getId());
     }
+
+    
 
 
 }
