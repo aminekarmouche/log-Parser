@@ -1,12 +1,17 @@
 # log-parser application
-Parsing webserver log files using PHP/Symfony with MySQL
+Parsing webserver log files using PHP/Symfony with MySQL. 
+Here's a brief guide! 
 
 ## Usage
+
+### main routes are 
+/parse : parse log file and persist in Mysql DB
+/load: load log data directly to MySql DB
 
 ### Requirements
 - Symfony is only supported on PHP 5.3.9 and up.
 - Install through Symfony Installer https://symfony.com/doc/current/book/installation.html#installing-the-symfony-installer
-
+- MySQL DB (setup name in app/config/parameters.yml)
 
 ## Two main approaches
 ### Basic approach consists of parsing and persisting the log file
