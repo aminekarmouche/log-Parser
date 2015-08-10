@@ -21,6 +21,11 @@ function parse_and_persist($em)
 	$log_file = 'access_test.log';
 	$pattern = '/^(?<client>\S+) +(?<clientid>\S+) +(?<userid>\S+) \[(?<datetime>[^\]]+)\] "(?<method>[A-Z]+)(?<request>[^"]+)?HTTP\/[0-9.]+" (?<status>[0-9]{3}) (?<size>[0-9]+)/';
 	$file_handle = fopen($log_file, "r");
+	$line = fgets($file_handle);
+	preg_match_all($pattern,$line,$matches);
+	
+
+	return ($matches[0][0]);
 
 	while (!feof($file_handle)){
 	   $line = fgets($file_handle);
