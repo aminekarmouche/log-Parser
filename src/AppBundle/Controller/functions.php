@@ -35,46 +35,38 @@ function parse_and_persist($em)
                 //var_dump($matches);
                 //var_dump($matches['client']);
 
+
                 foreach($matches['client'] as $x => $x_value) {
-                    $entry->setClient($x_value);
-                    echo 'client'.$x_value;
+                    $entry->setClient($x_value);                    
                 }
 
                 foreach($matches['clientid'] as $x => $x_value) {
                     $entry->setClientid($x_value);
-                    echo $x_value;
                 }
 
                 foreach($matches['userid'] as $x => $x_value) {
                     $entry->setUserid($x_value);
-                    echo $x_value;
                 }
 
-                            
                 foreach($matches['datetime'] as $x => $x_value) {
                      $str = new \DateTime($x_value);
                     $entry->setTimed($str);
-                    echo $x_value;
                 }
 
                 foreach($matches['method'] as $x => $x_value) {
                     $entry->setMethod($x_value);
-                    echo $x_value;
                 }
 
                 foreach($matches['request'] as $x => $x_value) {
                     $entry->setRequest($x_value);
-                    echo $x_value;
                 }
 
                 foreach($matches['status'] as $x => $x_value) {
                     $entry->setStatusCode($x_value);
-                    echo $x_value;
                 }
 
                 foreach($matches['size'] as $x => $x_value) {
                     $entry->setSize($x_value);
-                    echo $x_value;
                 }
 
                 $em->persist($entry);
