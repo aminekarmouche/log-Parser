@@ -13,6 +13,7 @@ class DefaultControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/');
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
+
     }
 
 	public function testParse()
@@ -28,7 +29,7 @@ class DefaultControllerTest extends WebTestCase
     public function testLoad()
     {
         $client = static::createClient();
-        
+
         $crawler = $client->request('GET', '/load');
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
