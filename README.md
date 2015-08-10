@@ -32,5 +32,12 @@ The presence of a "-" in a field indicates missing data.
 - 200 is the HTTP status code returned to the client. 2xx is a successful response, 3xx a redirection, 4xx a client error, and 5xx a server error.
 - 2326 is the size of the object returned to the client, measured in bytes.
 
+### Enhacements and TODO
+- better manager parsing using services and dependeny injection (skinny models and controller)
+- perform data analysis on myqsl database
+- conversion to CSV format for a more adequate use in statistical anlysis (PERL, PY, and R) 
+- enhance the speed of MySql's LOAD DATA through ignoring foreign keys and uniqueness constrains
+- enforce file splitting rules for large log files 
+
 
 
