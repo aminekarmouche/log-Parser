@@ -24,32 +24,6 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/logparse", name="logparse")
-     */
-    public function indexLogParse(Request $request)
-    {
-        $entry = new Entry();
-        $entry->setClient('A Foo Bar');
-        $entry->setUserid('-');
-        $entry->setClientid('-');
-        $str = new \DateTime('12569537329');
-        $entry->setTimed($str);
-
-        $entry->setMethod('GET');
-        $entry->setRequest('Homepage');
-        $entry->setStatusCode('200');
-        $entry->setSize('5000');
-
-        $em = $this->getDoctrine()->getManager();
-
-        $em->persist($entry);
-        $em->flush();
-
-        return new Response('Created entry id '.$entry->getId());
-    }
-
-
-    /**
      * @Route("/load", name="load")
      */ 
 
