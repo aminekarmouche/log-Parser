@@ -26,24 +26,12 @@ class DefaultControllerTest extends WebTestCase
 
     }
 
-	public function testLogParse()
-    {
-        $client = static::createClient();
-
-        $crawler = $client->request('GET', '/logparse');
-
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
-    }
-
     public function testLoad()
     {
         $client = static::createClient();
-
+        
         $crawler = $client->request('GET', '/load');
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
-
-
-
 }

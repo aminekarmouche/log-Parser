@@ -1,9 +1,10 @@
 <?php
 use AppBundle\Entity\Entry;
 
-function load_data_infile(Doctrine\DBAL\Connection $cnx){
-        
+function load_data_infile(Doctrine\DBAL\Connection $cnx)
+{        
     //load data into file
+    //include your log file path!
     $sql = "START TRANSACTION; LOAD DATA INFILE '/Users/Amine/Desktop/access_test.log' INTO TABLE test
     FIELDS TERMINATED BY ' ' 
     OPTIONALLY ENCLOSED BY '';
@@ -40,7 +41,6 @@ function parse_and_persist($em)
 		    	$entry->setRequest(@$matches['request'][0]);
 		    	$entry->setStatusCode(@$matches['status'][0]);
 		    	$entry->setSize(@$matches['size'][0]);
-
 		    	//peristing the entry 
 				$em->persist($entry);
 				$em->flush();              
