@@ -1,16 +1,15 @@
 <?php
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use AppBundle\Entity\Entry;
 
-function foo() {
-  echo 'bar';
-}
-
-public function load_data_infile(){
-        //get a connection
-        $cnx = $this->getDoctrine()->getConnection();
+function load_data_infile(Doctrine\DBAL\Connection $em){
+        
 
         //load data into file
-        $sql = "START TRANSACTION;
-        LOAD DATA INFILE '/Users/Amine/Desktop/access_test.log' INTO TABLE test
+        $sql = "START TRANSACTION; LOAD DATA INFILE '/Users/Amine/Desktop/access_test.log' INTO TABLE test
         FIELDS TERMINATED BY ' ' 
         OPTIONALLY ENCLOSED BY '';
         COMMIT;";   
@@ -19,7 +18,7 @@ public function load_data_infile(){
         return ('Trasaction completed!'); 	
 } 
 
-public function parse_and_persist()
+function parse_and_persist($em)
 {
 	$log_file = 'access_test.log';
         $pattern = '/^(?<client>\S+) +(?<clientid>\S+) +(?<userid>\S+) \[(?<datetime>[^\]]+)\] "(?<method>[A-Z]+)(?<request>[^"]+)?HTTP\/[0-9.]+" (?<status>[0-9]{3}) (?<size>[0-9]+)/';
@@ -77,8 +76,6 @@ public function parse_and_persist()
                     $entry->setSize($x_value);
                     echo $x_value;
                 }
-
-                $em = $this->getDoctrine()->getManager();
 
                 $em->persist($entry);
                 $em->flush();                
