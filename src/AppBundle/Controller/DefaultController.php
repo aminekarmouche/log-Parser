@@ -48,8 +48,25 @@ class DefaultController extends Controller
 
         return new Response('Created entry id '.$entry->getId());
     }
+/**
+     * @Route("/load", name="load")
+     */ 
 
-    
+    public function load()
+    {
+        //get the connection 
+        $cnx = $this->getDoctrine()->getConnection();
+        //load data into file
+        $sql = "START TRANSACTION;
+        LOAD DATA INFILE '/Users/Amine/Desktop/access_test.log' INTO TABLE test
+        FIELDS TERMINATED BY ' ' OPTIONALLY ENCLOSED BY '';
+        COMMIT;";   
+
+        $stmt = $cnx->prepare($sql);
+        $stmt->execute(); 
+        return new Response('success!');
+
+    }
 
 
 }
