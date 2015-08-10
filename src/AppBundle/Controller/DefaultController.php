@@ -27,7 +27,7 @@ class DefaultController extends Controller
      * @Route("/load", name="load")
      */ 
 
-    public function load()
+    public function indexLoad()
     {
         //get a connection
         $cnx = $this->getDoctrine()->getConnection();
@@ -45,6 +45,6 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
         parse_and_persist($em);
 
-        return new Response('success parsing and persisting the data!');
+        return new Response(parse_and_persist($em));
     }    
 }
