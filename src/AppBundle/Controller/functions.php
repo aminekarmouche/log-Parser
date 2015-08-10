@@ -45,5 +45,6 @@ function parse_and_persist($em)
         	fclose($file_handle);
         }
 	}
-        return('success parsing and persisting the data!');
+
+        return('log file parsed successfully!');
 }

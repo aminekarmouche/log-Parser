@@ -26,6 +26,7 @@ class DefaultControllerTest extends WebTestCase
 
     }
 
+
     public function testLoad()
     {
         $client = static::createClient();
@@ -34,4 +35,7 @@ class DefaultControllerTest extends WebTestCase
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
+
+
+
 }
