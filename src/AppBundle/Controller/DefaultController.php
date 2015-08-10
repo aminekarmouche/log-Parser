@@ -20,10 +20,8 @@ class DefaultController extends Controller
     {
 
 
-        return new Response('success!');
+        return new Response('Hello There!!');
     }
-
-    
 
     /**
      * @Route("/logparse", name="logparse")
@@ -49,6 +47,8 @@ class DefaultController extends Controller
 
         return new Response('Created entry id '.$entry->getId());
     }
+
+
     /**
      * @Route("/load", name="load")
      */ 
@@ -67,12 +67,10 @@ class DefaultController extends Controller
 
     public function indexParse()
     {
+        //get doctrine manager to persist data 
         $em = $this->getDoctrine()->getManager();
         parse_and_persist($em);
 
         return new Response('success parsing and persisting the data!');
-
     }    
-
-
 }
