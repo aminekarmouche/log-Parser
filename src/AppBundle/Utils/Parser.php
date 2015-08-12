@@ -9,7 +9,10 @@ class Parser {
 	{
 		
 	$log_file = 'access_test.log';
-	$pattern = '/^(?<client>\S+) +(?<clientid>\S+) +(?<userid>\S+) \[(?<datetime>[^\]]+)\] "(?<method>[A-Z]+)(?<request>[^"]+)?HTTP\/[0-9.]+" (?<status>[0-9]{3}) (?<size>[0-9]+)/';
+	$pattern = new RegExp('/^(?<client>\S+) +(?<clientid>\S+)',
+                    '+(?<userid>\S+) \[(?<datetime>[^\]]+)\]',
+                    ' "(?<method>[A-Z]+)(?<request>[^"]+)?HTTP\/[0-9.]+"'
+                    ' (?<status>[0-9]{3}) (?<size>[0-9]+)/');
 	$file_handle = fopen($log_file, "r");
 	$line = fgets($file_handle);
 	preg_match_all($pattern,$line,$matches);
