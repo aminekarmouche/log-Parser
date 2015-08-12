@@ -7,3 +7,10 @@ parameters:
 #   service_name:
 #      class: Acme\ToolBundle\Parser
 #       arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+services:
+    my_parser:
+        class: AppBundle\Utils\Parser
+        arguments: [manager]
+    my_loader:
+        class: AppBundle\Utils\my_loader
+        arguments: [connection]

@@ -1,42 +1,18 @@
 <?php
+namespace AppBundle\Utils;
+
 use AppBundle\Entity\Entry;
 
-/**
-     * @param Doctrine\DBAL\Connection $cn Doctrine Database Connection
-     * 
-     * @return string A message! 
-     */
+class Parser {
 
-function load_data_infile(Doctrine\DBAL\Connection $connection)
-{        
-    //load data into file
-    //include your log file path!
-    $sql = "START TRANSACTION;
-            LOAD DATA INFILE '/Users/Amine/Desktop/access_test.log' INTO TABLE test
-            FIELDS TERMINATED BY ' ' 
-            OPTIONALLY ENCLOSED BY '';
-            COMMIT;"; 
-
-    //prepae connection  
-    $sql_statement = $connection->prepare($sql);
-    $sql_statement->execute();
-    return ('Trasaction completed!'); 	
-} 
-
-/**
-     * @param Doctrine\DBAL\Connection $manager Doctrine Connection anager
-     *
-     * @return string Confirmation Message
-     */
-function parse_and_persist($manager)
-{
+	public function hello($manager)
+	{
+		
 	$log_file = 'access_test.log';
 	$pattern = '/^(?<client>\S+) +(?<clientid>\S+) +(?<userid>\S+) \[(?<datetime>[^\]]+)\] "(?<method>[A-Z]+)(?<request>[^"]+)?HTTP\/[0-9.]+" (?<status>[0-9]{3}) (?<size>[0-9]+)/';
 	$file_handle = fopen($log_file, "r");
 	$line = fgets($file_handle);
 	preg_match_all($pattern,$line,$matches);
-	
-
 	while (!feof($file_handle)){
 	   $line = fgets($file_handle);
 
@@ -68,4 +44,5 @@ function parse_and_persist($manager)
 	}
 
         return('log file parsed successfully!');
+	}
 }
