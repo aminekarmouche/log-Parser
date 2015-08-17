@@ -2,14 +2,13 @@
 namespace AppBundle\Utils;
 
 use AppBundle\Entity\Entry;
+use Doctrine\DBAL\Connection;
 
 class Parser
 {
-    public function hello($manager)
+    public function parse($manager)
     {
         $log_file = 'access_test.log';
-        //$pattern = '/^(?<client>\S+) +(?<clientid>\S+) +(?<userid>\S+) \[(?<datetime>[^\]]+)\] "(?<method>[A-Z]+)(?<request>[^"]+)?HTTP\/[0-9.]+" (?<status>[0-9]{3}) (?<size>[0-9]+)/';
-
         $pattern = '/^(?<client>\S+) +(?<clientid>\S+)'.
         '+(?<userid>\S+) \[(?<datetime>[^\]]+)\]'.
         ' "(?<method>[A-Z]+)(?<request>[^"]+)?HTTP\/[0-9.]+"'.
@@ -18,6 +17,7 @@ class Parser
         $file_handle = fopen($log_file, "r");
         $line = fgets($file_handle);
         preg_match_all($pattern, $line, $matches);
+        
         while (!feof($file_handle)) {
             $line = fgets($file_handle);
 
@@ -47,6 +47,7 @@ class Parser
                 fclose($file_handle);
             }
         }
+        
         return('log file parsed successfully!');
     }
 }

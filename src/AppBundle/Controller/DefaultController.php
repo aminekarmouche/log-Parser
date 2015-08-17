@@ -15,9 +15,9 @@ class DefaultController extends Controller
      * @Route("/", name="homepage")
      */
 
-    public function indexAction(Request $request)
+    public function indexWelcome(Request $request)
     {
-        return new Response('Hello There!! Please visit /parse & /load !');
+        return new Response('Hello There!! Please visit /parse & /load to load the file to the DB or parse it!');
     }
 
     /**
@@ -44,6 +44,6 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
         $parser = new Parser();
 
-        return new Response($parser->hello($em));
+        return new Response($parser->parse($em));
     }
 }
